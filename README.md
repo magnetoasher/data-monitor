@@ -41,5 +41,5 @@ git clone https://github.com/magnetoasher/data-monitor.git
 
 ## Performance Optimization
 
-- Limiting Data Points: Displaying only the most recent 50 data points to keep the chart performant.
+- Limiting Data Points: Displaying only the most recent 30 data points to keep the chart performant.
 - Memoization: Used useMemo to memoize filtered data, preventing unnecessary re-renders.
