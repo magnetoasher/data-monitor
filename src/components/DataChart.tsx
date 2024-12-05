@@ -9,6 +9,7 @@ import {
   CategoryScale,
   Tooltip,
 } from 'chart.js';
+import { useTheme } from '../contexts/ThemeContext';
 
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip);
 
@@ -17,6 +18,10 @@ interface DataChartProps {
 }
 
 const DataChart: React.FC<DataChartProps> = ({ data }) => {
+  const { theme } = useTheme();
+  const textColor = theme === 'dark' ? '#fff' : '#000';
+  const gridColor = theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+
   const chartData = {
     labels: data.map((item) => item.timestamp.toLocaleTimeString()),
     datasets: [
@@ -40,15 +45,15 @@ const DataChart: React.FC<DataChartProps> = ({ data }) => {
           display: false,
         },
         ticks: {
-          color: '#fff',
+          color: textColor,
         },
       },
       y: {
         grid: {
-          color: 'rgba(255, 255, 255, 0.1)',
+          color: gridColor,
         },
         ticks: {
-          color: '#fff',
+          color: textColor,
         },
       },
     },
