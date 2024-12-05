@@ -1,50 +1,38 @@
-# React + TypeScript + Vite
+# Real-Time Data Monitor
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Setup Instructions
 
-Currently, two official plugins are available:
+1. Clone the repository:
+  ```bash
+  git clone https://github.com/magnetoasher/data-monitor.git
+  ```
+2. cd data-monitor
+3. npm install
+4. npm run dev
+5. Open your browser at `http://localhost:3000`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
+- React with TypeScript
+- Vite: Build tool for fast development
+- Tailwind CSS: Utility-first CSS framework
+- Chart.js: For data visualization
 
-## Expanding the ESLint configuration
+## Features
+- Real-Time Data Simulation: Data is generated every second to mimic a live sensor data stream.
+- Data Visualization with Chart.js: Displays data using a responsive line chart.
+- Filtering and Highlighting: Users can filter data based on a minimum value.
+- Responsive Design: Optimized for various screen sizes.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Components
+- Data Generation: Created a `dataGenerator.ts` utility that uses `setInterval` to emit data every second.
+- Filter Component: Provides an input for users to set the minimum filter value.
+- DataStream Component: Filters data based on the `filterValue`, and passes filtered data to the `DataChart` component.
+- DataChart Component: Renders a line chart using Chart.js
 
-- Configure the top-level `parserOptions` property like this:
+## Implementation
+- Filtering: Implemented in the `DataStream` component by filtering the data array.
+- Highlighting: In the `DataChart` component, data points exceeding a value of 80 are highlighted in red.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Performance Optimization
+- Limiting Data Points: Displaying only the most recent 50 data points to keep the chart performant.
+- Memoization: Used useMemo to memoize filtered data, preventing unnecessary re-renders.

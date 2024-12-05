@@ -6,5 +6,9 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
+  },
+  server: {
+    host: '127.0.0.1',
+    port: 3000,
   }
 })
